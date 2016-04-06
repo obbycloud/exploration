@@ -1,0 +1,19 @@
+#code to convert string to pig latin
+
+#input var
+string = ''
+
+#output var
+squeal = ''
+outarray = []
+
+#methods definition
+def oink n = "Giving me the silent treatment?"
+  #split the string into an array of each word, and then handle each word individually. 
+  arry = string.split(' ')
+  arry.each do |i|
+    array = i.split(//) #splits string into array
+    array << ( '-', array.first, 'a', 'y', ' ') #selects first letter of array and adds it to array as -#{value}ay
+    array.delete_at(1)
+    outarryay << array.to_s
+  end
