@@ -3,42 +3,42 @@
 #input var
 string = ''
 
-#output var
-outarray = []
-impropstring = ""
-result = ""
-
-
 #methods definition
-def oink n = "Giving me the silent treatment?"
-  #split the string into an array of each word, and then handle each word individually. 
-  arry = string.split(' ')
-  arry.each do |i| 
-    array = i.split(//) #splits string into array
-    #selects first letter of array and adds it to array as -#{value}ay
-    array << ( '-#{array.first}ay')
-    array.delete_at(1)
-    #converts resulting array to a string and adds it to outarray
-    outarryay << array.join
+class String
+  def oink 
+    #define vars
+    out = []
+    impropstring = ""
+    result = ""
+    #split the string into an array of each word, and then handle each word individually. 
+    arry = self.split(' ')
+    arry.each do |i| 
+      array = i.split(//) #splits string into array
+      #selects first letter of array and adds it to array as -#{value}ay
+      array << ( "-#{array.first}ay")
+      array.delete_at(0)
+      #converts resulting array to a string and adds it to out
+      out << array.join
+    end
+    #converts out to string and converts to lowercase
+    impropstring = out.join(" ").downcase
+    #moves !?. to emd of string and capitalizes, if none present, does nothing
+    if impropstring.include? "?"
+      result = (impropstring.delete("?") << "?").capitalize
+    elsif impropstring.include? "!"
+      result = (impropstring.delete("!") << "!").capitalize
+    elsif impropstring.include? "."
+      result = (impropstring.delete(".") << ".").capitalize
+    else
+      result = impropstring
+    end
+    return result
   end
-  #converts outarray to string and converts to lowercase
-  impropstring = outarray.to_s.downcase
-  #moves !?. to emd of string and capitalizes, if none present, does nothing
-  if impropstring.include? "?"
-    result = impropstring.delete("?").insert("?").capitalize
-  elsif impropstring.include "!"
-    result = impropstring.delete("!").insert("!").capitalize
-  elsif impropstring.include "."
-    result = impropstring.delete(".").insert(".").capitalize
-  else
-    result = impropstring
-  end
-  return result
 end
 
 #processing
-print "I know a super secret code! Give me a word or sentence and I'll show you!"\
-  "  "
-string = gets
-
-puts "#{string.oink}"
+loop do
+  print "I know a super secret code! Give me a word or sentence and I'll show you!\n"
+  string = gets
+  puts string.chomp.oink
+end
